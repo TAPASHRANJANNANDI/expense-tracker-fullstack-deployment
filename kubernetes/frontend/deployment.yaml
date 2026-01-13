@@ -1,28 +1,14 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Rollout
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: expense-app-frontend
+  name: expense-app-frontend-deployment
+  labels:
+    app: expense-app-frontend
 spec:
   replicas: 3
-
-  strategy:
-    canary:
-      stableService: expense-app-frontend
-      canaryService: expense-app-frontend-canary
-      trafficRouting:
-        nginx:
-          stableIngress: expense-app-frontend-ingress
-      steps:
-        - setWeight: 20
-        - pause: { duration: 2m }
-        - setWeight: 50
-        - pause: { duration: 5m }
-        - setWeight: 100
-
   selector:
     matchLabels:
       app: expense-app-frontend
-
   template:
     metadata:
       labels:
@@ -33,13 +19,3 @@ spec:
         image: expense-app-frontend:1
         ports:
         - containerPort: 3000
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 3000
-          initialDelaySeconds: 5
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 3000
-          initialDelaySeconds: 10
