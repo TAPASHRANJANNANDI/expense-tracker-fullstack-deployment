@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: expense-app-backend-deployment
+  labels:
+    app: expense-app-backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: expense-app-backend
+  template:
+    metadata:
+      labels:
+        app: expense-app-backend
+    spec:
+      containers:
+      - name: expense-app-backend
+        image: expense-app-backend:1
+        ports:
+        - containerPort: 5000
