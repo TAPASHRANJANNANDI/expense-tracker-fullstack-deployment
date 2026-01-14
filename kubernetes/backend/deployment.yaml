@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: expense-app-backend
-        image: tapashranjannandi/expense-app-backend:5
+        image: tapashranjannandi/expense-app-backend:6
         ports:
         - containerPort: 5000
