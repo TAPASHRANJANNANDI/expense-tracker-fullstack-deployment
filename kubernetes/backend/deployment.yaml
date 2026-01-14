@@ -17,5 +17,10 @@ spec:
       containers:
       - name: expense-app-backend
         image: tapashranjannandi/expense-app-backend:6
+        env: 
+        - name: MONGO_URL
+          value: "mongodb+srv://tapashbariflo_db_user:yuYD21YBP1bziUSx@cluster1.ynrsg2p.mongodb.net/expenseTracker1?retryWrites=true&w=majority&appName=Cluster1"
+        - name: PORT
+          value: "5000"
         ports:
         - containerPort: 5000
