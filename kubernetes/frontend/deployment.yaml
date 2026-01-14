@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: expense-app-frontend
-        image: expense-app-frontend:1
+        image: tapashranjannandi/expense-app-frontend:1
         ports:
         - containerPort: 3000
